@@ -119,6 +119,8 @@ public interface BedrockCodecHelper {
 
     ByteBuf readByteBuf(ByteBuf buffer);
 
+    void writeBytes(ByteBuf dst, ByteBuf src);
+
     void writeByteBuf(ByteBuf buffer, ByteBuf toWrite);
 
     String readString(ByteBuf buffer);

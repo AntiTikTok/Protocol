@@ -96,6 +96,11 @@ public abstract class BaseBedrockCodecHelper implements BedrockCodecHelper {
         buffer.writeBytes(toWrite, toWrite.readerIndex(), toWrite.writerIndex());
     }
 
+    @Override
+    public void writeBytes(ByteBuf dst, ByteBuf src) {
+        dst.writeBytes(dst.readBytes(dst.readableBytes()));
+    }
+
     public String readString(ByteBuf buffer) {
         int length = VarInts.readUnsignedInt(buffer);
         return (String) buffer.readCharSequence(length, StandardCharsets.UTF_8);
