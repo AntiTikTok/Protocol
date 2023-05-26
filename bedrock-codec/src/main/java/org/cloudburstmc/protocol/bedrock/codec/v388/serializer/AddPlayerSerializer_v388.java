@@ -1,6 +1,7 @@
 package org.cloudburstmc.protocol.bedrock.codec.v388.serializer;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufUtil;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.cloudburstmc.protocol.bedrock.codec.BedrockCodecHelper;
@@ -14,14 +15,10 @@ public class AddPlayerSerializer_v388 extends AddPlayerSerializer_v291 {
     @Override
     public void serialize(ByteBuf buffer, BedrockCodecHelper helper, AddPlayerPacket packet) {
         super.serialize(buffer, helper, packet);
-
-        buffer.writeIntLE(packet.getBuildPlatform());
     }
 
     @Override
     public void deserialize(ByteBuf buffer, BedrockCodecHelper helper, AddPlayerPacket packet) {
         super.deserialize(buffer, helper, packet);
-
-        packet.setBuildPlatform(buffer.readIntLE());
     }
 }

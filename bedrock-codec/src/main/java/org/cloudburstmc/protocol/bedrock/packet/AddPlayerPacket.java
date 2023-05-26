@@ -22,56 +22,8 @@ import java.util.UUID;
 @Data
 @EqualsAndHashCode(doNotUseGetters = true)
 @ToString(doNotUseGetters = true)
-public class AddPlayerPacket implements BedrockPacket, PlayerAbilityHolder {
-    private final EntityDataMap metadata = new EntityDataMap();
-    private final List<EntityLinkData> entityLinks = new ObjectArrayList<>();
-    private UUID uuid;
-    private String username;
-    private long uniqueEntityId;
-    private long runtimeEntityId;
-    private String platformChatId;
-    private Vector3f position;
-    private Vector3f motion;
-    private Vector3f rotation;
-    private ItemData hand;
-    private final AdventureSettingsPacket adventureSettings = new AdventureSettingsPacket();
-    private String deviceId;
-    private int buildPlatform;
-    private GameType gameType;
-
-    /**
-     * @since v534
-     */
-    private List<AbilityLayer> abilityLayers = new ObjectArrayList<>();
-    /**
-     * @since v557
-     */
-    private final EntityProperties properties = new EntityProperties();
-
-    public void setUniqueEntityId(long uniqueEntityId) {
-        this.uniqueEntityId = uniqueEntityId;
-        this.adventureSettings.setUniqueEntityId(uniqueEntityId);
-    }
-
-    @Override
-    public PlayerPermission getPlayerPermission() {
-        return this.adventureSettings.getPlayerPermission();
-    }
-
-    @Override
-    public void setPlayerPermission(PlayerPermission playerPermission) {
-        this.adventureSettings.setPlayerPermission(playerPermission);
-    }
-
-    @Override
-    public CommandPermission getCommandPermission() {
-        return this.adventureSettings.getCommandPermission();
-    }
-
-    @Override
-    public void setCommandPermission(CommandPermission commandPermission) {
-        this.adventureSettings.setCommandPermission(commandPermission);
-    }
+public class AddPlayerPacket implements BedrockPacket {
+    private byte[] data;
 
     @Override
     public final PacketSignal handle(BedrockPacketHandler handler) {
