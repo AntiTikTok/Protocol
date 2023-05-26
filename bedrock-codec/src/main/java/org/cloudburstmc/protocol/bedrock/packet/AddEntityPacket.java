@@ -18,28 +18,7 @@ import java.util.List;
 @EqualsAndHashCode(doNotUseGetters = true)
 @ToString(doNotUseGetters = true)
 public class AddEntityPacket implements BedrockPacket {
-    private final List<AttributeData> attributes = new ObjectArrayList<>();
-    private final EntityDataMap metadata = new EntityDataMap();
-    private final List<EntityLinkData> entityLinks = new ObjectArrayList<>();
-    private long uniqueEntityId;
-    private long runtimeEntityId;
-    private String identifier;
-    private int entityType;
-    private Vector3f position;
-    private Vector3f motion;
-    private Vector2f rotation;
-    /**
-     * @since v534
-     */
-    private float headRotation;
-    /**
-     * @since v534
-     */
-    private float bodyRotation;
-    /**
-     * @since v557
-     */
-    private final EntityProperties properties = new EntityProperties();
+    private byte[] data;
 
     @Override
     public final PacketSignal handle(BedrockPacketHandler handler) {

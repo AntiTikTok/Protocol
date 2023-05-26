@@ -16,14 +16,10 @@ public class SetEntityDataSerializer_v419 extends SetEntityDataSerializer_v291 {
     @Override
     public void serialize(ByteBuf buffer, BedrockCodecHelper helper, SetEntityDataPacket packet) {
         super.serialize(buffer, helper, packet);
-
-        VarInts.writeUnsignedLong(buffer, packet.getTick());
     }
 
     @Override
     public void deserialize(ByteBuf buffer, BedrockCodecHelper helper, SetEntityDataPacket packet) {
         super.deserialize(buffer, helper, packet);
-
-        packet.setTick(VarInts.readUnsignedLong(buffer));
     }
 }
