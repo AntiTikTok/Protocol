@@ -16,16 +16,10 @@ public class PlayerAuthInputSerializer_v419 extends PlayerAuthInputSerializer_v3
     @Override
     public void serialize(ByteBuf buffer, BedrockCodecHelper helper, PlayerAuthInputPacket packet) {
         super.serialize(buffer, helper, packet);
-
-        VarInts.writeUnsignedLong(buffer, packet.getTick());
-        helper.writeVector3f(buffer, packet.getDelta());
     }
 
     @Override
     public void deserialize(ByteBuf buffer, BedrockCodecHelper helper, PlayerAuthInputPacket packet) {
         super.deserialize(buffer, helper, packet);
-
-        packet.setTick(VarInts.readUnsignedLong(buffer));
-        packet.setDelta(helper.readVector3f(buffer));
     }
 }

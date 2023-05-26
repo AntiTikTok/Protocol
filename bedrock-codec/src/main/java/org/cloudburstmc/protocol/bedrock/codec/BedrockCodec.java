@@ -59,9 +59,11 @@ public final class BedrockCodec {
             throw new PacketSerializeException("Error whilst deserializing " + packet, e);
         }
 
+        /*
         if (log.isDebugEnabled() && buf.isReadable()) {
             log.debug(packet.getClass().getSimpleName() + " still has " + buf.readableBytes() + " bytes to read!");
         }
+         */
         return packet;
     }
 

@@ -12,12 +12,10 @@ public class PlayerAuthInputSerializer_v575 extends PlayerAuthInputSerializer_v5
     @Override
     public void serialize(ByteBuf buffer, BedrockCodecHelper helper, PlayerAuthInputPacket packet) {
         super.serialize(buffer, helper, packet);
-        helper.writeVector2f(buffer, packet.getAnalogMoveVector());
     }
 
     @Override
     public void deserialize(ByteBuf buffer, BedrockCodecHelper helper, PlayerAuthInputPacket packet) {
         super.deserialize(buffer, helper, packet);
-        packet.setAnalogMoveVector(helper.readVector2f(buffer));
     }
 }
