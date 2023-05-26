@@ -1,6 +1,7 @@
 package org.cloudburstmc.protocol.bedrock.codec.v291.serializer;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufUtil;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.cloudburstmc.protocol.bedrock.codec.BedrockCodecHelper;
@@ -14,19 +15,11 @@ public class MobEquipmentSerializer_v291 implements BedrockPacketSerializer<MobE
 
     @Override
     public void serialize(ByteBuf buffer, BedrockCodecHelper helper, MobEquipmentPacket packet) {
-        VarInts.writeUnsignedLong(buffer, packet.getRuntimeEntityId());
-        helper.writeItem(buffer, packet.getItem());
-        buffer.writeByte(packet.getInventorySlot());
-        buffer.writeByte(packet.getHotbarSlot());
-        buffer.writeByte(packet.getContainerId());
+        buffer.writeBytes(packet.getData());
     }
 
     @Override
     public void deserialize(ByteBuf buffer, BedrockCodecHelper helper, MobEquipmentPacket packet) {
-        packet.setRuntimeEntityId(VarInts.readUnsignedLong(buffer));
-        packet.setItem(helper.readItem(buffer));
-        packet.setInventorySlot(buffer.readUnsignedByte());
-        packet.setHotbarSlot(buffer.readUnsignedByte());
-        packet.setContainerId(buffer.readByte());
+        packet.setData(ByteBufUtil.getBytes(buffer));
     }
 }

@@ -13,8 +13,7 @@ import java.util.List;
 @EqualsAndHashCode(doNotUseGetters = true)
 @ToString(doNotUseGetters = true)
 public class InventoryContentPacket implements BedrockPacket {
-    private List<ItemData> contents = new ObjectArrayList<>();
-    private int containerId;
+    private byte[] data;
 
     @Override
     public final PacketSignal handle(BedrockPacketHandler handler) {

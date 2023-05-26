@@ -321,28 +321,6 @@ public abstract class BaseBedrockCodecHelper implements BedrockCodecHelper {
     }
 
     @Override
-    public void readItemUse(ByteBuf buffer, InventoryTransactionPacket packet) {
-        packet.setActionType(VarInts.readUnsignedInt(buffer));
-        packet.setBlockPosition(this.readBlockPosition(buffer));
-        packet.setBlockFace(VarInts.readInt(buffer));
-        packet.setHotbarSlot(VarInts.readInt(buffer));
-        packet.setItemInHand(this.readItem(buffer));
-        packet.setPlayerPosition(this.readVector3f(buffer));
-        packet.setClickPosition(this.readVector3f(buffer));
-    }
-
-    @Override
-    public void writeItemUse(ByteBuf buffer, InventoryTransactionPacket packet) {
-        VarInts.writeUnsignedInt(buffer, packet.getActionType());
-        this.writeBlockPosition(buffer, packet.getBlockPosition());
-        VarInts.writeInt(buffer, packet.getBlockFace());
-        VarInts.writeInt(buffer, packet.getHotbarSlot());
-        this.writeItem(buffer, packet.getItemInHand());
-        this.writeVector3f(buffer, packet.getPlayerPosition());
-        this.writeVector3f(buffer, packet.getClickPosition());
-    }
-
-    @Override
     public boolean readInventoryActions(ByteBuf buffer, List<InventoryActionData> actions) {
         this.readArray(buffer, actions, (buf, helper) -> {
             InventorySource source = this.readSource(buf);

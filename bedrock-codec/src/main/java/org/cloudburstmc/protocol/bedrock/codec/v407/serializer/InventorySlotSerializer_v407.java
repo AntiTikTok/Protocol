@@ -1,6 +1,7 @@
 package org.cloudburstmc.protocol.bedrock.codec.v407.serializer;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufUtil;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.cloudburstmc.protocol.bedrock.codec.BedrockCodecHelper;
@@ -14,15 +15,11 @@ public class InventorySlotSerializer_v407 implements BedrockPacketSerializer<Inv
 
     @Override
     public void serialize(ByteBuf buffer, BedrockCodecHelper helper, InventorySlotPacket packet) {
-        VarInts.writeUnsignedInt(buffer, packet.getContainerId());
-        VarInts.writeUnsignedInt(buffer, packet.getSlot());
-        helper.writeNetItem(buffer, packet.getItem());
+        buffer.writeBytes(packet.getData());
     }
 
     @Override
     public void deserialize(ByteBuf buffer, BedrockCodecHelper helper, InventorySlotPacket packet) {
-        packet.setContainerId(VarInts.readUnsignedInt(buffer));
-        packet.setSlot(VarInts.readUnsignedInt(buffer));
-        packet.setItem(helper.readNetItem(buffer));
+        packet.setData(ByteBufUtil.getBytes(buffer));
     }
 }

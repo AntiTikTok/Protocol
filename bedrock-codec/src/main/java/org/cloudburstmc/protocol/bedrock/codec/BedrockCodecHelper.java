@@ -171,10 +171,6 @@ public interface BedrockCodecHelper {
 
     void writeTagValue(ByteBuf buffer, Object tag);
 
-    void readItemUse(ByteBuf buffer, InventoryTransactionPacket packet);
-
-    void writeItemUse(ByteBuf buffer, InventoryTransactionPacket packet);
-
     boolean readInventoryActions(ByteBuf buffer, List<InventoryActionData> actions);
 
     void writeInventoryActions(ByteBuf buffer, List<InventoryActionData> actions, boolean hasNetworkIds);

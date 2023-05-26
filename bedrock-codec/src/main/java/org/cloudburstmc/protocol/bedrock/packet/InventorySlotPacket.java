@@ -10,9 +10,7 @@ import org.cloudburstmc.protocol.common.PacketSignal;
 @EqualsAndHashCode(doNotUseGetters = true)
 @ToString(doNotUseGetters = true)
 public class InventorySlotPacket implements BedrockPacket {
-    private int containerId;
-    private int slot;
-    private ItemData item;
+    private byte[] data;
 
     @Override
     public final PacketSignal handle(BedrockPacketHandler handler) {
